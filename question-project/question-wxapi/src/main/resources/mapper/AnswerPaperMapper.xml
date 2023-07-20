@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoxiao.wxapi.answer_paper.mapper.AnswerPaperMapper">
+
+    <insert id="saveList" parameterType="java.util.List">
+        insert into answer_paper (paper_id, openid, paper_type, paper_value)
+            VALUES
+            <foreach collection="list" item="item" index="index" separator=",">
+                (
+                 #{item.paperId},
+                 #{item.openid},
+                 #{item.paperType},
+                 #{item.paperValue}
+                )
+            </foreach>
+    </insert>
+</mapper>

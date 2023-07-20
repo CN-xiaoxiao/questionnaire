@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoxiao.wxapi.answer_question.mapper.AnswerQuestionMapper">
+    <insert id="insert">
+        insert into answer_question (question_id, openid, create_time) VALUES (#{questionId}, #{openid}, #{createTime})
+    </insert>
+
+    <select id="getAnswerQuestionByQuestionIdAndOpenid"
+            resultType="com.xiaoxiao.wxapi.answer_question.entity.AnswerQuestion">
+        select answer_id, question_id, openid, create_time from answer_question
+            where question_id = #{questionId} and openid = #{openid}
+    </select>
+</mapper>

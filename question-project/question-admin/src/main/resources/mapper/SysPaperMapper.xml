@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoxiao.web.paper.mapper.SysPaperMapper">
+  <insert id="insertPaper">
+    insert into sys_paper (paper_id, question_id, paper_title, paper_type, paper_order)
+        VALUES (#{sysPaper.paperId},#{sysPaper.questionId}, #{sysPaper.paperTitle}, #{sysPaper.paperType}, #{sysPaper.paperOrder})
+  </insert>
+
+  <delete id="deletePaperByQuestionId">
+      delete from sys_paper
+           where question_id = #{questionId};
+  </delete>
+    <delete id="deletePaperByPaperId">
+        delete from sys_paper
+        where paper_id = #{paperId};
+    </delete>
+    <select id="selectPaper" resultType="com.xiaoxiao.web.paper.entity.SysPaper">
+    select paper_id, question_id, paper_title, paper_type, paper_order from sys_paper
+        where question_id = #{questionId} and paper_title = #{paperTitle} and paper_type = #{paperType}
+        and paper_order = #{paperOrder}
+  </select>
+  <select id="selectPaperListByQuestionId" resultType="com.xiaoxiao.web.paper.entity.SysPaper">
+      select paper_id, question_id, paper_title, paper_type, paper_order from sys_paper
+        where question_id = #{questionId}
+  </select>
+</mapper>

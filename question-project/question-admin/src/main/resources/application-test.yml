@@ -1,0 +1,49 @@
+#端口号配置
+server:
+  port: 8089
+#数据库连接配置
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/question-project?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    password: root
+  servlet:
+    multipart:
+      max-file-size: 10MB        # 设置单个文件最大大小为10MB
+      max-request-size: 100MB    # 设置多个文件大小为100MB
+web:
+  load-path: file:H://java/questionnaire/project-image/ # 图片加载路径
+  uploadPath: H://java/questionnaire/project-image/  # 图片上传路径
+  export-path: file:H://java/questionnaire/export-docx/
+#mybatis的配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.xiaoxiao.web.user.pojo
+  configuration:
+    map-underscore-to-camel-case: true
+
+#分页插件的配置
+pagehelper:
+  #配置四項 hprs
+  helper-dialect: mysql  #分页助手方言：mysql
+  params: count=countSql  #为了支持 startPage(Object params) 方法
+  support-methods-arguments: true  #支持通过 Mapper 接口参数来传递分页参数，默认值 false
+  reasonable: true #分页合理化参数，默认值为 false,页码不为负，不超总页码
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd} [%thread] %-5level %logger- %msg%n'
+#  config:  classpath:log4j2.xml
+#  level:
+#    root: INFO
+#    javax.activation: info
+#    org.apache.catalina: INFO
+#    org.apache.commons.beanutils.converters: INFO
+#    org.apache.coyote.http11.Http11Processor: INFO
+#    org.apache.http: INFO
+#    org.apache.tomcat: INFO
+#    org.springframework: INFO
+#    com.chinamobile.cmss.bdpaas.resource.monitor: DEBUG
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoxiao.web.paperchoice.mapper.SysPaperChoiceMapper">
+
+    <insert id="savePaperChoice">
+        insert into sys_paper_choice (choice_id, paper_id, choice_text, choice_order)
+            VALUES (#{choiceId}, #{paperId}, #{choiceText}, #{choiceOrder})
+    </insert>
+    <delete id="deletePaperChoiceByPaperId">
+        delete from sys_paper_choice where paper_id = #{paperId}
+    </delete>
+    <select id="selectPaperChoiceListByPaperId"
+            resultType="com.xiaoxiao.web.paperchoice.entity.SysPaperChoice">
+        select choice_id, paper_id, choice_text, choice_order from sys_paper_choice
+            where paper_id = #{paperId}
+    </select>
+
+    <select id="getListPaperChoiceListByQuestionId"
+            resultType="com.xiaoxiao.web.paperchoice.entity.SysPaperChoice">
+        select  sp.question_id,spc.choice_id, spc.paper_id, spc.choice_text, spc.choice_order,count(ac.choice_id) as total
+        from  sys_paper as sp
+                  right join sys_paper_choice as spc  on sp.paper_id = spc.paper_id
+                  left join answer_paper_choice as ac on ac.choice_id = spc.choice_id
+        where sp.question_id =#{questionId}
+        GROUP BY spc.choice_id
+    </select>
+</mapper>

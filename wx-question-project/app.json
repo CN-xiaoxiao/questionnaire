@@ -1,0 +1,37 @@
+{
+  "pages":[
+    "pages/home/home",
+    "pages/mypage/mypage",
+    "pages/detail/detail",
+    "pages/answer/answer",
+    "pages/myanswer/myanswer",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#FFB6C1",
+    "navigationBarTitleText": "微问卷",
+    "navigationBarTextStyle":"white"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#FFB6C1",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "/images/home.png",
+        "selectedIconPath": "/images/home_select.png"
+      },
+      {
+        "pagePath": "pages/mypage/mypage",
+        "text": "我的",
+        "iconPath": "/images/my.png",
+        "selectedIconPath": "/images/my_select.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

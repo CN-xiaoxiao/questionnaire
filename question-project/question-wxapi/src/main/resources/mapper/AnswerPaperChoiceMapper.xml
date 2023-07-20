@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoxiao.wxapi.answer_paper_choice.mapper.AnswerPaperChoiceMapper">
+
+  <insert id="save">
+    insert into answer_paper_choice (choice_id, paper_id, openid) VALUES
+        (#{answerPaperChoice.choiceId}, #{answerPaperChoice.paperId}, #{answerPaperChoice.openid})
+  </insert>
+  <insert id="saveList" parameterType="java.util.List">
+    insert into answer_paper_choice (choice_id, paper_id, openid) VALUES
+        <foreach collection="choiceList" item="choice" index="index" separator=",">
+          (
+           #{choice.choiceId},
+           #{choice.paperId},
+           #{choice.openid}
+          )
+        </foreach>
+  </insert>
+</mapper>

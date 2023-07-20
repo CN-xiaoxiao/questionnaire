@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoxiao.wxapi.paper.mapper.SysPaperMapper">
+
+  <select id="selectPaperListByQuestionId" resultType="com.xiaoxiao.wxapi.paper.entity.SysPaper">
+    select paper_id, question_id, paper_title, paper_type, paper_order from sys_paper
+    where question_id = #{questionId}
+  </select>
+    <select id="getMyPaperList" resultType="com.xiaoxiao.wxapi.paper.entity.SysPaper">
+      select sp.paper_id, sp.question_id, sp.paper_title, sp.paper_type, sp.paper_order, ap.paper_value
+          from answer_question as aq
+            left join sys_paper as sp on sp.question_id = aq.question_id
+            left join answer_paper as ap on sp.paper_id = ap.paper_id
+        where aq.openid = #{openid} and aq.question_id = #{questionId}
+    </select>
+</mapper>

@@ -1,0 +1,16 @@
+<!--pages/home/home.wxml-->
+<!-- 首页页面 -->
+<!-- view: 视图容器， ---》 前端的div -->
+<view class="homecontainer">
+  <view class="item" wx:for="{{tableList}}" wx:key="index">
+    <!-- 图片 -->
+    <!-- <image src="../../images/avuser.png" class="images">左侧图片</image> -->
+    <image class="images" src="{{item.questionImg}}"></image>
+    <!-- 问卷信息 -->
+    <view class="item-right" data-questionId="{{item.questionId}}" bindtap="gotoDetail">
+      <view class="item-title">{{item.questionTitle}}</view>
+      <view class="item-desc">{{item.questionDesc}}</view>
+      <view class="item-join">参与人数：{{item.joinCount}}人</view>
+    </view>
+  </view>
+</view>

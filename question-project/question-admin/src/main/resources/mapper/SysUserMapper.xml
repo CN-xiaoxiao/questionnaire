@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoxiao.web.user.mapper.SysUserMapper">
+
+    <resultMap id="sysUser" type="com.xiaoxiao.web.user.entity.SysUser">
+        <id column="user_id" property="userId"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+    </resultMap>
+    <insert id="save">
+        insert into sys_user (username, password, phone, email) values (#{username}, #{password}, #{phone}, #{email})
+    </insert>
+    <update id="updateById">
+        update sys_user set username = #{username}, password = #{password}, phone = #{phone}, email = #{email}
+        where user_id = #{userId}
+    </update>
+    <delete id="removeUserById">
+        delete from sys_user where user_id = #{userId}
+    </delete>
+    <select id="findUserByUsernameAndPwd" resultMap="sysUser">
+        select user_id, username, password, phone, email from sys_user
+            where username = #{username} and password = #{password}
+    </select>
+    <select id="findUserByUserId" resultType="com.xiaoxiao.web.user.entity.SysUser">
+        select user_id, username, password, phone, email from sys_user where user_id = #{userId}
+    </select>
+    <select id="selectAllByPage" resultType="com.xiaoxiao.web.user.entity.SysUser">
+        select user_id, username, password, phone, email from sys_user
+    </select>
+    <select id="selectByPageAndCondition" resultType="com.xiaoxiao.web.user.entity.SysUser">
+        select user_id, username, password, phone, email from sys_user
+        <where>
+            <if test="username != null">
+                username like "%" #{username} "%"
+            </if>
+        </where>
+    </select>
+    <select id="findUserByUsername" resultType="com.xiaoxiao.web.user.entity.SysUser">
+        select user_id, username, password, phone, email from sys_user
+        where username = #{username}
+    </select>
+</mapper>

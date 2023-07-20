@@ -1,0 +1,20 @@
+<!--pages/detail/detail.wxml-->
+<!-- 问卷详情页 -->
+<view class="detailcontainer">
+  <view class="detail-item">
+  <!-- 左侧图片 -->
+    <image src="{{questionImg}}" class="images"/>
+    <!-- 右侧 -->
+    <view class="item-right">
+      <view class="item-title">{{questionTitle}}</view>
+      <view class="item-desc">{{questionDesc}}</view>
+    </view>
+  </view>
+  <!-- 分隔符 -->
+  <view class="point"></view>
+  <!-- 按钮 -->
+  <view class="btn-item">
+    <button class="btn" wx:if="{{status == '0'}}" data-questionId="{{questionId}}" bindtap="gotoAnswer">开始答卷</button>
+    <button class="btn" wx:if="{{status == '1'}}" bindtap="hasAnswer">已答卷</button>
+  </view>
+</view>
